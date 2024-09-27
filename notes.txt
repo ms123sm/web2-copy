@@ -1,0 +1,149 @@
+TO ACTIVATE THE VIRTUAL ENVIRONMENT:
+source bin/activate
+
+TO START A NEW DJANGO PROJECT:
+django-admin startproject Our_First_Web
+
+TO RUN THE SERVER (using the manage.py):
+python manage.py runserver
+
+To apply migrations, after stopping the server:
+python manage.py migrate
+
+TO OPEN VS CODE FROM THE TERMINAL DIRECTLY:
+code .
+
+TO INITIALIZE AND APP:
+python manage.py startapp our_main_app
+
+When you creat a new app: Add it to the settings and URLs of your project to include it
+1. additing to the settings to include it into your project
+2. URLs to creat a link for this app
+
+Whenever you create a function in the views file in an app, you need to link it to the app by adding a url into it in the app's URLs
+
+
+Tags
+<!-- {% tag %} -->
+<!-- NOTE THAT tag SHOULD BE THE TAG NAME -->
+<!-- endtag should be syntaxed like endTheNameOfTheTagYouWantToEnd -->
+<!-- {% endtag %} -->
+
+<!-- 1. tags extends -->
+
+<!-- In Django templates, {% extends %} is used to specify that a template inherits from another template. This is a fundamental concept in Django's templating system and is part of what’s known as template inheritance. This allows you to create a base template with common elements and then extend it in other templates, promoting code reuse and consistency across your site. -->
+
+Static
+
+Static files in web development are files that don’t change dynamically and are served as-is by the web server. They include various resources that enhance the look, feel, and functionality of a web application. In Django, static files typically include:
+CSS Files: Stylesheets that define the visual presentation of your web pages.
+Example: styles.css, main.css
+JavaScript Files: Scripts that provide interactive features and client-side functionality.
+Example: app.js, main.js
+Images: Graphics and photos used in your web application.
+Example: logo.png, background.jpg
+Fonts: Custom font files used to style text on your site.
+Example: custom-font.woff, icon-font.ttf
+Other Files: Any other static resources that don’t fall into the above categories but are needed for your web application.
+Example: favicon.ico, robots.txt
+Purpose and Usag
+CSS Files: These are used to style HTML elements, providing the visual layout and design of your web pages. For instance, you might use CSS to set fonts, colors, spacing, and overall page layout.
+JavaScript Files: These are used to add interactivity and dynamic behavior to your web pages. JavaScript can handle events, manipulate the DOM, and interact with server-side APIs to create a more dynamic user experience.
+Images: Images are used for branding, illustration, and content enhancement. For instance, logos, icons, and product photos are included as static image files.
+Fonts: Custom fonts can be used to ensure that your web application adheres to your design guidelines and branding requirements.
+Other Files: These might include any static assets that are required for the proper functioning or branding of your web application, such as favicons and site verification files.
+
+For more Django details/options/features
+	https://docs.djangoproject.com/en/5.1/
+
+---
+
+Models: Database
+SQL: SQL (Structured Query Language) is a standardized language used to communicate with and manipulate databases. It’s essential for defining, querying, updating, and managing relational databases. Here's a breakdown of what SQL is, why it’s important, and how Django abstracts its use:
+
+What is SQL?
+SQL is a language designed for managing and querying relational databases. It includes a variety of commands and operations, such as:
+DDL (Data Definition Language): Commands like CREATE, ALTER, DROP that define and modify database schemas.
+DML (Data Manipulation Language): Commands like SELECT, INSERT, UPDATE, DELETE that manage and query data.
+DCL (Data Control Language): Commands like GRANT, REVOKE that control access to data.
+TCL (Transaction Control Language): Commands like COMMIT, ROLLBACK that manage transactions.
+
+Why You Might Not Need to Learn SQL with Django
+Django abstracts SQL through its ORM (Object-Relational Mapping) system, which allows you to interact with the database using Python code rather than SQL queries directly. Here’s why you might not need to learn SQL right away:
+	ORM Abstraction
+	Automatic Query Generation
+	Focus on Python
+	Validation and Security
+
+When Learning SQL Can Be Beneficial?
+While Django’s ORM can handle many tasks, knowing SQL can still be valuable:
+Advanced Queries: For complex queries, joins, or performance tuning, understanding SQL allows you to write custom queries and optimize database interactions.
+Debugging: Knowing SQL helps you understand how Django translates ORM queries into SQL, which can be useful for debugging and performance optimization.
+Database Management: Managing database schemas, migrations, and other administrative tasks can benefit from SQL knowledge.
+Portability: If you work with other systems or databases outside of Django, SQL skills will be essential.
+
+Models:
+
+In Django, models are used to define the structure of your database tables. They represent your application's data and handle the interactions with the database through Django’s ORM (Object-Relational Mapping). 
+
+You need a separete app to manage your models.
+To create a new app. go to where your manage.py is in your terminal.
+	python manage.py startapp usersinfo 
+Note that usersinfo if the app name (you chose)
+
+Admin Panel: through Django
+Django’s admin panel is a powerful feature that provides a web-based interface for managing your application’s data. It is highly customizable and allows you to perform CRUD (Create, Read, Update, Delete) operations on your models with ease. 
+
+To create a superuser:
+	python manage.py createsuperuser
+	then -> fill Username
+	then -> fill Email address
+	then -> fill Password
+
+e.g. Username: admin, Email address: admin@admin.com, Password: 123
+
+---
+
+python -m pip install Pillow
+
+---
+makemigrations vs migrate
+
+In Django, makemigrations and migrate are two distinct commands used in the migration process, each serving a different purpose:
+1. python manage.py makemigrations
+Purpose: This command is used to create new migration files based on the changes you have made to your models.
+Functionality: It looks at the current state of your models and compares it to the previous state (recorded in the existing migration files). If it detects changes, it generates new migration files that describe these changes.
+Usage: You typically run this command after modifying your models, such as adding or removing fields, changing field options, or adding new models.
+2. python manage.py migrate
+Purpose: This command is used to apply and unapply migrations to the database. It ensures that your database schema matches the current state of your models as defined by the migration files.
+Functionality: It reads the migration files and executes the necessary SQL commands to update the database schema. It keeps track of which migrations have been applied to prevent reapplying the same migrations.
+Usage: You run this command after creating migration files with makemigrations to update the database schema. It should be run any time you need to sync the database schema with your models.
+
+Summary
+makemigrations: Creates migration files based on model changes.
+migrate: Applies migration files to the database, updating the schema.
+Typical Workflow:
+
+Modify your models.
+Run python manage.py makemigrations to generate migration files.
+Run python manage.py migrate to apply these migrations to the database.
+
+So:
+	python manage.py makemigrations
+	python manage.py migrate
+
+---
+
+To display images:
+In Django, serving static files and media files is crucial for a fully functional web application. Static files include things like CSS, JavaScript, and images that don’t change per user, while media files include user-uploaded content such as profile pictures or document attachments.
+Static Files vs. Media Files
+Static Files: Files that are part of your application's codebase, such as stylesheets, JavaScript files, and images used for design (e.g., icons).
+Media Files: User-uploaded files, such as profile pictures, document uploads, etc.
+
+
+
+
+
+
+
+
